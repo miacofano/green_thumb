@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Green Thumb</title>
+</head>
+<body>
+    <div class="row">
+        <h1> Green Thumb</h1>
+        <p> Welcome {{user.first_name}} {{user.last_name}}</p>
+        <a href = "/user/logout"> Logout </a>
+    </div>
+    <div class="row">
+        <h2> Plants </h2>
+        <a href = "/plants/new">New Plant</a>
+    </div>
+    <div class="row">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Water</th>
+                    <th>Light</th>
+                    <th>Food</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for one_plant in all_plants %}
+                <tr>
+                    <td>{{one_plant.name}}</td>
+                    <td>{{one_plant.water}}</td>
+                    <td>{{one_plant.light}}</td>
+                    <td>{{one_plant.food}}</td>
+                    <td>
+                        <a href="/plants/{{one_plant.id}}">View</a>
+                        <a href="/plants/edit/{{one_plant.id}}">Edit</a>
+                        <a href="/plants/delete/{{one_plant.id}}">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

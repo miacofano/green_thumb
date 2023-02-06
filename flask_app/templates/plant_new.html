@@ -1,0 +1,47 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>New Plant</title>
+</head>
+<body>
+    <div class="row">
+        <h1> Green Thumb</h1>
+        <a href = "/dashboard">Home</a>
+        <a href = "/logout"> Logout </a>
+    </div>
+    <div class="row">
+        <h2> New Plant </h2>
+    </div>
+    <div class="row">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p>{{message}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+    <form action="/plants/new/create" method="post">
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name">
+        </div>
+        <div>
+            <label for="water">Water:</label>
+            <input type="text" name="water" id="water">
+        </div>
+        <div>
+            <label for="light">Light:</label>
+            <input type="text" name="light" id="light">
+        </div>
+        <div>
+            <label for="food">Food:</label>
+            <input type="text" name="food" id="food">
+        </div>
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>
